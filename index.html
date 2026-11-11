@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Sap Tapper</title>
+<meta name="description" content="An incremental idle clicker about maple sugaring. Tap the tree, boil the sap, 40 to 1.">
+<meta name="theme-color" content="#2c3b45">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sap Tapper">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1794178634">
+</head>
+<body>
+<div id="app">
+  <!-- SCENE (the tree) -->
+  <div id="sceneWrap">
+    <canvas id="scene" aria-label="Maple tree. Tap to collect sap."></canvas>
+    <div id="hud">
+      <button id="btnMenu" class="hbtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"/></svg></button>
+      <div class="res" id="resSap">
+        <i class="ico drop"></i>
+        <div class="rv"><b id="sapN">0</b><small id="sapPs">tap the tree!</small></div>
+      </div>
+      <div class="res hidden" id="resSyr">
+        <i class="ico jar"></i>
+        <div class="rv"><b id="syrN">0</b><small id="syrPs">+0/s</small></div>
+      </div>
+      <button id="btnSound" class="hbtn" aria-label="Sound"><svg viewBox="0 0 24 24"><path class="spk" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="wave" d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12"/><path class="mute" d="M16 9l5 6M21 9l-5 6"/></svg></button>
+    </div>
+    <div id="buffBar"></div>
+    <div id="line" class="hidden">
+      <div class="lineTxt"><span id="lineL">Evaporator line</span><span id="lineR"></span></div>
+      <div class="lineBar"><i id="lineFill"></i></div>
+    </div>
+    <div id="toasts"></div>
+  </div>
+
+  <!-- SHOP SHEET -->
+  <div id="sheet">
+    <button id="grab" aria-label="Expand shop"><i></i></button>
+    <div id="goal" class="off" aria-live="polite"><i class="gChk"></i><span class="gT"><small>Sugarmaker's list</small><b id="goalT"></b></span><em id="goalP"></em></div>
+    <div id="tabs">
+      <button class="tab on" data-tab="prod">Producers<em class="dot"></em></button>
+      <button class="tab hidden" data-tab="upg">Upgrades<em class="dot"></em></button>
+      <button class="tab hidden" data-tab="season">Season<em class="dot"></em></button>
+    </div>
+    <div id="panes">
+      <div class="pane on" id="pane-prod">
+        <div class="paneHead hidden" id="amtRow">
+          <span>Buy</span>
+          <div class="seg" id="amtSeg"><button data-amt="1" class="on">×1</button><button data-amt="10">×10</button><button data-amt="max">Max</button></div>
+        </div>
+        <div class="list" id="prodList"></div>
+      </div>
+      <div class="pane" id="pane-upg"><div class="list" id="upgList"></div></div>
+      <div class="pane" id="pane-season"><div class="list" id="seasonBody"></div></div>
+    </div>
+  </div>
+
+  <div id="ghost" class="hidden"><i></i></div>
+
+  <!-- TITLE -->
+  <section id="title" class="overlay">
+    <div class="titleCard">
+      <h1 class="logo" aria-label="Sap Tapper">
+        <span class="l1">SAP</span><span class="l2">TAPPER</span>
+        <span class="ratio">40 : 1</span>
+      </h1>
+      <p class="tagline">An incremental idle clicker</p>
+      <button id="btnStart" class="big"><span id="startTxt">Start tapping</span><small id="startSub">Tap the maple. Boil the sap.</small></button>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div id="modal" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="panel">
+      <h2 id="mTitle"></h2>
+      <div id="mBody"></div>
+      <div id="mBtns"></div>
+    </div>
+  </div>
+</div>
+<script src="engine.js?v=1794178634"></script>
+<script src="art.js?v=1794178634"></script>
+<script src="audio.js?v=1794178634"></script>
+<script src="game.js?v=1794178634"></script>
+</body>
+</html>
